@@ -43,6 +43,18 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
+
+    <!--Checking if we have error message or not -->
+    <?php 
+      if ($this->session->flashdata('error')){
+    ?>
+    <div class="alert alert-danger">
+      <?php echo $this->session->flashdata('error'); ?>
+    </div>
+    <?php
+    }
+    ?>
+
     <form action="<?php echo site_url('admin/validate-login');?>" method="post" id="frm-admin-login">
       <div class="form-group has-feedback">
         <input type="email" class="form-control" name='txt_email' placeholder="Email" required>

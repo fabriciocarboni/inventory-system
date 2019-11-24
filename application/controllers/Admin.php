@@ -10,8 +10,11 @@
 
         public function index(){
 
-            $this->load->view('pages/login');
-
+            if ($this->session->userdata("is_active") == 1) {
+                $this->load->view('pages/dashboard');
+            } else {
+                $this->load->view('pages/login');
+            }
         }
 
         public function validate_login_details(){
@@ -22,9 +25,16 @@
             //$password = isset($login_details['txt_password']) ? $login_details['txt_password'] : '';
 
             if ($this->app_model->is_admin_exists($email, $password)) {
-                echo "logged in";
+                //handle if user exists in db
+                $this->session->set_userdata([ //set session with values to be passed to the view
+                    'is_active' => 1,
+                    'email' => $email // -> email for the current user logged in and validated against db
+                ]);
+
             } else {
-                echo "error";
+                $this->session->set_flashdata('error','Invalid login credentials');
             }
+            //session_destroy();
+            return redirect(base_url());
         }
     }
