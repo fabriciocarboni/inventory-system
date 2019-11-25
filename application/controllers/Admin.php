@@ -11,7 +11,10 @@
         public function index(){
 
             if ($this->session->userdata("is_active") == 1) {
-                $this->load->view('pages/dashboard');
+                $data = array(
+                   'page_content' => 'pages/dashboard'
+                );
+                $this->load->view('layout/main_layout', $data);
             } else {
                 $this->load->view('pages/login');
             }
