@@ -23,7 +23,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8086/www/inventory-system/';
+#$config['base_url'] = 'http://localhost/inventory-system/';
+#set base url dinamically
+#https://medium.com/@amirsanni/dynamically-setting-base-url-in-codeigniter-3-8179d72ddd84
+$protocol = is_https() ? "https://" : "http://";
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
+if(is_cli()){
+   $config['base_url'] = '';
+} 
+if(stristr($host, "localhost") !== FALSE || (stristr($host, '192.168.') !== FALSE) || (stristr($host, '127.0.0') !== FALSE)){
+   $config['base_url'] = $protocol.$host."/inventory-system/";
+} else {
+    $allowed_hosts = ['localhost', 'www.joggue.com.br'];
+    $config['base_url'] = in_array($host, $allowed_hosts) ? $protocol.$host."/" : "we-do-not-recognise-this-host.com";
+}
+
 
 /*
 |--------------------------------------------------------------------------
