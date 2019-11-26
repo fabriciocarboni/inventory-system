@@ -83,17 +83,13 @@
             </div>
             <div class="form-group">
                 <label for="dd_status">Status:</label>
-                <select name="form-control">
+                <select class="form-control" name="dd_status">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
             </div>            
-
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
         </form> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 
