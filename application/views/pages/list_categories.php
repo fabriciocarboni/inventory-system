@@ -9,7 +9,6 @@
         <li><a class="active">List Categories</a></li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -17,6 +16,22 @@
             <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
+            TODO: not working
+            <?php if($this->session->flashdata('success')) {
+                  ?>
+                  <div class="alert alert-success">
+                    <?php echo &this->session->flashdata('success'); ?>
+                  </div>
+                <?php 
+                } ?>
+                <?php if($this->session->flashdata('error')) {
+                  ?>
+                  <div class="alert alert-danger">
+                    <?php echo &this->session->flashdata('error'); ?>
+                  </div>
+                <?php
+                } ?>
+
 
             <div class="panel panel-primary">
                 <div class="panel-heading">List Categories
@@ -76,10 +91,11 @@
         <h4 class="modal-title">Add Category</h4>
       </div>
       <div class="modal-body">
-        <form action="javascript:void(0)">
+        <form action="javascript:void(0)" class="validate-custom-form-error" id="frm-add-category" method="post">
             <div class="form-group">
                 <label for="txt_add_name">Name:</label>
-                <input type="text" class="form-control" id="txt_add_name" name="txt_add_name">
+                <input type="text" class="form-control" required id="txt_add_name" name="txt_add_name">
+                <!--<label id="txt_add_name-error" class="error" for="txt_add_name">This field is required</label>-->
             </div>
             <div class="form-group">
                 <label for="dd_status">Status:</label>

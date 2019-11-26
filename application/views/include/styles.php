@@ -28,7 +28,15 @@
 
   <!--custom styles -->
   <style>
+       /* Add Category button */
        .btn-placement-class{
           margin-top: -6px;
        }
+       /* Add Category field Name on form model */
+       .validate-custom-form-error label.error {
+            color:red;
+            font-weight: normal;
+       }
   </style>
+
+

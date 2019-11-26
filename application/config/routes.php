@@ -67,3 +67,6 @@ $route['admin/profile-settings'] = 'settings/profile_settings';
 $route['admin/currency-settings'] = 'settings/currency_settings';
 $route['admin/product_image_settings'] = 'settings/product_image_settings';
 $route['admin/footer-settings'] = 'settings/footer_settings';
+
+//handle ajax requests
+$route['inventory-ajax'] = 'ajax/handle_ajax_requests';

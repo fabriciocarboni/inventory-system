@@ -103,13 +103,11 @@
 <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
-
+<!-- jQuery validate -->
 <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <script>
   $(function () {
-
-        $('#frm-admin-login').validate();
-
+      $('#frm-admin-login').validate();
   });
 </script>
 </body>

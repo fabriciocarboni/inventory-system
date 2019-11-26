@@ -33,14 +33,29 @@
 <script src="<?php echo base_url(); ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
+<!-- jQuery validate -->
+<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 
 <script>
 $(function(){
   //list categories
   $('#list-categories').DataTable();
+
+  $('#frm-add-category').validate({
+    //submite handler function
+    submitHandler:function(){
+
+      //collect all form data inside this variable
+      //.serialize(), serializes all data comming from the form
+      var postdata = $('#frm-add-category').serialize()+"&action=save_category";
+      //submission url
+      $.post("<?php echo site_url('inventory-ajax') ?>", postdata, function(response){
+        location.reload();
+      }
+      });
+
+    }
+  });
 });
 </script>
+
