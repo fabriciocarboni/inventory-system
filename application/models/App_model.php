@@ -19,6 +19,13 @@
                 return false;
             }
         }
+
+        public function save_resource_data($tbl_name,$data = array()){
+
+            $this->db->insert($tbl_name, $data);
+      
+            return true;
+        }
     }
 
 //example of complex query where we dont need to use query builder

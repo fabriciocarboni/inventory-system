@@ -51,7 +51,6 @@ $(function(){
       //submission url
       $.post("<?php echo site_url('inventory-ajax') ?>", postdata, function(response){
         location.reload();
-      }
       });
 
     }

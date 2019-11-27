@@ -27,28 +27,24 @@
                         'name' => $category_name,
                         'status' => $status
                     );
-                    if($this->app_model->save_resource_data(tbl_category(), $category_data)) {
+                    if($this->app_model->save_resource_data(tbl_categories(), $category_data)) {
                         $this->session->set_flashdata('success', 'Category added succesfully');
                     } else {
-                        &this->session->set_flashdata('error','Failed to save category');
+                        $this->session->set_flashdata('error','Failed to save category');
                     }
-                    $this->json();
+                    $this->json(1,"Category added successfully");
                 }
             }
         }
 
         public function json($status, $message, $data = array()){
             
-            $data_arr = array(
-                'status' => $status,
-                'message'=> $message,
-                'arr' => $data
-            )
-            print_r(json_encode($data_arr));
-
+            $data = array(
+                'sts' => $status,
+                'message' => $message,
+                'arr' => $arr
+            );         
+            print_r(json_encode($data));
             die;
-            
-        
-
         }
     }
