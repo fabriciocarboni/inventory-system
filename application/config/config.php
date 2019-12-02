@@ -32,7 +32,7 @@ if(is_cli()){
    $config['base_url'] = '';
 } 
 if(stristr($host, "localhost") !== FALSE || (stristr($host, '192.168.') !== FALSE) || (stristr($host, '127.0.0') !== FALSE)){
-   $config['base_url'] = $protocol.$host."/www/inventory-system/";
+   $config['base_url'] = $protocol.$host."/inventory-system/";
 } else {
     $allowed_hosts = ['localhost', 'www.joggue.com.br'];
     $config['base_url'] = in_array($host, $allowed_hosts) ? $protocol.$host."/" : "we-do-not-recognise-this-host.com";

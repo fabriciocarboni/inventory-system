@@ -50,22 +50,36 @@
                 </thead>
                 <tbody>
                 <?php
+
                   if(count($categories) > 0){
-                    $count = 1;
+                    $count =1;
                     foreach($categories as $index => $value){
                       ?>
-                        <tr>
-                          <td><?php echo $count; ?></td>
-                          <td><?php echo $value->name ?></td>
-                          <td><?php echo $value->created_at ?></td>
-                          <td><?php echo $value->status ?></td>
+                      <tr>
+                            <td><?php echo $count; ?></td>
+                            <td><?php echo $value->name ?></td>
+                            <td><?php echo $value->created_at ?></td>
+                            <td><?php
+                            if($value->status){
+                              ?>
+                              <button class="btn btn-success">Active</button>
+                              <?php
+                            }else{
+                              ?>
+                              <button class="btn btn-danger">Inactive</button>
+                              <?php
+                            }
+                            ?></td>
+                            <td>
+                              <button class="btn btn-warning btn-edit-category" data-id="<?php echo $value->id ?>">Edit</button>
+                              <button class="btn btn-danger btn-delete-category" data-id="<?php echo $value->id ?>">Delete</button>
+                            </td>
                         </tr>
-                      <?php
-                      $count++;
-                    } 
-                  }                      
-                ?>
-                    
+                        <?php
+                        $count++;
+                    }
+                  }
+                  ?>
        
                 </tbody>
                 <tfoot>

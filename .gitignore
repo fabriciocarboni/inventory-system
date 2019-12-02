@@ -1,5 +1,6 @@
 .vscode
 application/cache/*
+aplication/config/config.php
 !application/cache/index.html
 
 application/logs/*
