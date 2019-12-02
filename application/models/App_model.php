@@ -20,6 +20,14 @@
             }
         }
 
+        public function get_resource_data($tbl_name){
+
+            $this->db->select("*");
+            $this->db->from($tbl_name);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function save_resource_data($tbl_name,$data = array()){
 
             $this->db->insert($tbl_name, $data);

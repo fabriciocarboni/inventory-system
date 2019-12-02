@@ -44,23 +44,36 @@
                         <th>Sr No</th>
                         <th>Name</th>
                         <th>Created_at</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+                  if(count($categories) > 0){
+                    $count = 1;
+                    foreach($categories as $index => $value){
+                      ?>
+                        <tr>
+                          <td><?php echo $count; ?></td>
+                          <td><?php echo $value->name ?></td>
+                          <td><?php echo $value->created_at ?></td>
+                          <td><?php echo $value->status ?></td>
+                        </tr>
+                      <?php
+                      $count++;
+                    } 
+                  }                      
+                ?>
                     
-                    <tr>
-                        <td>Donna Snider</td>
-                        <td>Customer Support</td>
-                        <td>New York</td>
-                        <td>27</td>
-                    </tr>
+       
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Sr No</th>
                         <th>Name</th>
                         <th>Created_at</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
