@@ -20,12 +20,29 @@
             }
         }
 
+        public function get_category_data($category_id){
+            $this->db->select("*");
+            $this->db->from(tbl_categories());
+            $this->db->where("id", $category_id);
+            $query = $this->db->get();
+            return $query->row();
+
+        }
+
         public function get_resource_data($tbl_name){
 
             $this->db->select("*");
             $this->db->from($tbl_name);
             $query = $this->db->get();
             return $query->result();
+        }
+
+        public function edit_resource_data($tbl_name, $data, $conditions){
+            $this->db->where($conditions);
+            $result = $this->db->update($tbl_name, $data);
+
+            return true;
+
         }
 
         public function save_resource_data($tbl_name,$data = array()){

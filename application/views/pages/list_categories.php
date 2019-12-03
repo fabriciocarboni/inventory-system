@@ -35,7 +35,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">List Categories
-                    <button id="btn-add-category" data-toggle="modal" data-target="#category-model" class="btn btn-warning pull-right btn-placement-class">Add Category</button>
+                    <button id="btn-add-category" data-toggle="modal" data-target="#category-modal" class="btn btn-warning pull-right btn-placement-class">Add Category</button>
                 </div>
                 <div class="panel-body">
                 <table id="list-categories" class="display" style="width:100%">
@@ -108,17 +108,20 @@
   </div>
 
   <!-- Modal -->
-<div id="category-model" class="modal fade" role="dialog">
+<div id="category-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Category</h4>
+        <h4 class="modal-title" id="modal-title">Add Category</h4>
       </div>
       <div class="modal-body">
         <form action="javascript:void(0)" class="validate-custom-form-error" id="frm-add-category" method="post">
+
+            <input type="hidden" name="opt_type" id="opt_type" value="add"/>
+            <input type="hidden" name="edit_id" id="edit_id" value=""/>
             <div class="form-group">
                 <label for="txt_add_name">Name:</label>
                 <input type="text" class="form-control" required id="txt_add_name" name="txt_add_name">
@@ -126,7 +129,7 @@
             </div>
             <div class="form-group">
                 <label for="dd_status">Status:</label>
-                <select class="form-control" name="dd_status">
+                <select class="form-control" name="dd_status" id="dd_status">
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>

@@ -38,23 +38,56 @@
 
 <script>
 $(function(){
-  //list categories
-  $('#list-categories').DataTable();
+    //list categories
+    $('#list-categories').DataTable();
 
-  $('#frm-add-category').validate({
-    //submite handler function
-    submitHandler:function(){
+    $('#frm-add-category').validate({
+      //submite handler function
+      submitHandler:function(){
 
-      //collect all form data inside this variable
-      //.serialize(), serializes all data comming from the form
-      var postdata = $('#frm-add-category').serialize()+"&action=save_category";
-      //submission url
-      $.post("<?php echo site_url('inventory-ajax') ?>", postdata, function(response){
-        location.reload();
+        //collect all form data inside this variable
+        //.serialize(), serializes all data comming from the form
+        var postdata = $('#frm-add-category').serialize()+"&action=save_category";
+        //submission url
+        $.post("<?php echo site_url('inventory-ajax') ?>", postdata, function(response){
+          location.reload();
+        });
+
+      }
+    });
+  
+    //if the current open page contains btn-edit-category button
+    if($(".btn-edit-category").length > 0){
+      $(".btn-edit-category").on("click",function(){
+        $("#modal-title").text("Update Category");
+        
+        var category_id = $(this).attr("data-id");
+
+        var postdata = "category_id="+category_id+"&action=get_category";
+
+        $.post("<?php echo site_url('inventory-ajax') ?>",postdata,function(response){
+          
+          var data = $.parseJSON(response);
+
+          $("#txt_add_name").val(data.arr.data.name);
+          $("#edit_id").val(data.arr.data.id);
+          $("#opt_type").val("edit");
+          $("#dd_status option[value='"+data.arr.data.status+"']").attr("selected",true);
+
+              $("#category-modal").modal();
+         });
       });
-
     }
-  });
+
+
+
+
+
+
+
+
+
+  
 });
 </script>
 

@@ -20,31 +20,50 @@
             $param = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
             if (!empty($param)) {
                 if ($param == 'save_category') {
+
                     $category_name = $this->input->post('txt_add_name');
                     $status = $this->input->post('dd_status');
+                    $opt_type = $this->input->post('opt_type');
+                    $edit_id = $this->input->post('edit_id');
 
                     $category_data = array(
                         'name' => $category_name,
                         'status' => $status
                     );
-                    if($this->app_model->save_resource_data(tbl_categories(), $category_data)) {
-                        $this->session->set_flashdata('success', 'Category added succesfully');
-                    } else {
-                        $this->session->set_flashdata('error','Failed to save category');
+                    if($opt_type == "add"){
+                        if($this->app_model->save_resource_data(tbl_categories(), $category_data)) {
+                            $this->session->set_flashdata('success', 'Category added succesfully');
+                        } else {
+                            $this->session->set_flashdata('error','Failed to save category');
+                        }
+                        $this->json(1,"Category added successfully");
+
+                    } elseif($opt_type == "edit") {
+                        
+
+                        if($this->app_model->edit_resource_data(tbl_categories(), $category_data,  array("id" => $edit_id))) {
+                            $this->session->set_flashdata('success', 'Category edited succesfully');
+                        } else {
+                            $this->session->set_flashdata('error','Failed to edit category');
+                        }
                     }
-                    $this->json(1,"Category added successfully");
+                    
+
+                } elseif($param == 'get_category') {
+                    $category_id = isset($_REQUEST['category_id']) ? $_REQUEST['category_id'] : "";
+                    if(!empty($category_id)) {
+                        $category_data = $this->app_model->get_category_data($category_id);
+                        $this->json(1,"category data", array("data" => $category_data));
+                    } else {
+                        $this->session->set_flashdata('error','Failed to get the category data');
+                    }
                 }
             }
         }
 
-        public function json($status, $message, $data = array()){
-            
-            $data = array(
-                'sts' => $status,
-                'message' => $message,
-                'arr' => $arr
-            );         
+        public function json($status,$message,$arr = array()){
+            $data = array("sts" => $status, "message" => $message, "arr" => $arr);
             print_r(json_encode($data));
             die;
-        }
+         }
     }
