@@ -45,7 +45,14 @@
 
         }
 
-        public function save_resource_data($tbl_name,$data = array()){
+        public function delete_resource_data($tbl_name, $conditions){
+            
+            $this->db->delete($tbl_name, $conditions);
+
+            return true;
+        }
+
+        public function save_resource_data($tbl_name, $data = array()){
 
             $this->db->insert($tbl_name, $data);
       
