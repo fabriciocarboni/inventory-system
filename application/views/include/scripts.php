@@ -57,25 +57,18 @@ $(function(){
     });
     //List Category Delete button
     $(document).on("click",".btn-delete-category",function(){
-
       var conf = confirm("Are you sure want to delete?");
-
       if(conf){
-
         var delete_id = $(this).attr("data-id");
         
         var postdata = "delete_id="+delete_id+"&action=delete_category";
-
         $.post("<?php echo site_url('inventory-ajax') ?>",postdata,function(response){
-
           location.reload();
         });
       }
-
         
  
     });
-    
 
     //Lista representante Edit button
     //if the current open page contains btn-edit-category button
